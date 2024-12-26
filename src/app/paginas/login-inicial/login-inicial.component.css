@@ -1,0 +1,144 @@
+.Beauty-login-div {
+    width: 100%;
+    height: 94vh;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+}
+
+.Login-func-div{
+    width: 100%;
+    height: 94vh;
+    margin: 25px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.Englobational-Login-Div{
+    display: flex;
+    justify-content: space-between;
+}
+
+.Centralize-Text-Input {
+    display: flex;
+    font-weight: 400;                        
+    letter-spacing: 0.05em;           
+    color: gray;                      
+}
+
+.Login-Form-Style{
+    width: 100%;
+}
+
+.form-control {
+    font-size: 1rem;
+    border: none;
+    border-bottom: 1px solid #ced4da;
+    border-radius: 0;
+    transition: all 0.3s ease;
+}
+
+.form-control:focus {     
+    box-shadow: none; 
+    outline: none;              
+}
+
+.form-check{
+    padding-top: 5px;
+}
+
+.form-check-input {
+    width: 16px;
+    height: 16px;
+    border-radius: 3px;
+    border: 1px solid #ced4da;
+}
+
+.form-check-input:focus {
+    border-color: #86b7fe;
+    outline: 0;
+    box-shadow: none; 
+}
+
+.btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+    font-size: 1rem;
+    border-radius: 6px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    height: fit-content;
+}
+
+.btn-primary:hover {
+    background-color: #5a52b9;
+}
+
+.Information-Password-Camp{
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 10px;
+}
+
+.Sign-up-Div{
+    display: flex;
+    flex-direction: row-reverse;
+    width: 90%;
+}
+
+.Separation-Div{
+    width: 80%;
+}
+
+.Sign-up-P{
+    color: #007bff;
+    font-weight: bold;
+    font-size: larger;
+    padding-top: 10px;
+    padding-right: 5px;
+    padding-left: 5px;
+}
+
+.Sign-up-P:hover{
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.LoginButton{
+    border-radius: 0;
+    width: 100%;
+    height: 3.5rem;
+    background-color:#7b74d3;
+}
+
+.LoginButton:active {
+    transform: scale(0.995);
+    background-color: #5a52b9;
+}
+
+.DownTextStyle{
+    display: flex;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    color: #7b74d3;
+    cursor: pointer;
+    user-select: none;
+}
+
+.form-check-input{
+    cursor: pointer;
+}
+
+.form-check-input:checked {
+    background-color:#7b74d3;
+}
+
+.passwordReq{
+    display: flex;
+    flex-direction: column;
+    padding-top: 15px;
+    color: gray;
+}
+
+.modal-backdrop { background-color: rgba(0, 0, 0, 0.5); }

@@ -1,0 +1,96 @@
+<div class="Englobational-Login-Div">
+    <div class="Beauty-login-div">
+        <img style="width: 70%; user-select: none;" src="/LoginPageArt.png" alt="Imagem de Login">
+    </div>
+    <div class="Login-func-div">
+      <div class="Separation-Div">
+        <form class="Login-Form-Style" [formGroup]="LoginForm">
+          <div class="mb-3">
+            <label class="form-label Centralize-Text-Input">Email address</label>
+            <input type="email" class="form-control" formControlName="email">
+            <div class="form-text">We'll never share your email with anyone else.</div>
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label Centralize-Text-Input">Password</label>
+            <input type="password" class="form-control" formControlName="password">
+          </div>
+          <div class="Information-Password-Camp">
+            <div class="mb-3 form-check">
+              <input formControlName="RememberMe" type="checkbox" class="form-check-input">
+              <label (click)="onClickRememberMe()" class="DownTextStyle">Remember me</label>
+            </div>
+            <div>
+              <label (click)="GoToPasswordRecovery()" class="DownTextStyle">Forgot Password?</label>
+            </div>
+          </div>
+          <button (click)="SubmitLogin()" class="btn btn-primary LoginButton">Login</button>
+          <label style="padding-top: 10px;">Don't Have An Account? <label (click)="openSignUpModal()" style="font-weight: bold; cursor: pointer;">Click Here</label></label>
+      </form>
+      </div>
+    </div>
+</div>
+
+@if(SignUpModal){
+  <div class="modal-backdrop"></div>
+  <div class="modal show d-block fade" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Sign Up</h5>
+          <button (click)="SignUpModal = !SignUpModal" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form [formGroup]="SignUpForm">
+            <div style="padding-top: 20px;">
+              <label class="Centralize-Text-Input">Username</label>
+              <input formControlName="username" autocomplete="new-username" class="form-control">
+              @if(UserIsAlreadyTaken){
+                <label style="color: red;" class="Centralize-Text-Input">This username is already taken</label>
+              }
+            </div>
+            <div style="padding-top: 20px;">
+              <label class="Centralize-Text-Input">Email</label>
+              <input formControlName="email" autocomplete="new-email" type="email" class="form-control">
+              @if(EmailIsAlreadyRegistered){
+                <label style="color: red;" class="Centralize-Text-Input">This email is already in use</label>
+              }
+            </div>
+            <div style="padding-top: 20px;">
+              <label class="Centralize-Text-Input">Password</label>
+              <input formControlName="password" autocomplete="new-password" type="password" class="form-control" (ngModelChange)="DebouncePassword.next('')">
+              <div class="passwordReq">
+                <label style="color: black;">A senha deve conter:</label>
+                <label [style.color]="VerificationList[0]? 'green' : 'gray'"> * No minimo 8 caracteres</label>
+                <label [style.color]="VerificationList[1]? 'green' : 'gray'"> * No minimo 1 letra maiúscula</label>
+                <label [style.color]="VerificationList[2]? 'green' : 'gray'"> * No minimo 1 letra minúscula</label>
+                <label [style.color]="VerificationList[3]? 'green' : 'gray'"> * No minimo 1 número</label>
+                <label [style.color]="VerificationList[4]? 'green' : 'gray'"> * No minimo 1 caractere especial</label>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button (click)="SignUpModal = !SignUpModal" type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+          <button (click)="onSignUpDone()" [disabled]="!this.SignUpForm.valid || !IsPasswordValid" type="button" class="btn btn-primary">Done</button>
+        </div>
+      </div>
+    </div>
+  </div>
+}
+
+@if(Modal){
+  <div class="modal-backdrop"></div>
+  <div class="modal show d-block fade" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">{{ModalTitle}}</h5>
+          <button (click)="Modal = !Modal" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <label>{{Message}}</label>
+        </div>
+      </div>
+    </div>
+  </div>
+}
