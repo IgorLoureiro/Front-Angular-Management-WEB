@@ -142,3 +142,9 @@
 }
 
 .modal-backdrop { background-color: rgba(0, 0, 0, 0.5); }
+
+.icon-modal{
+    width: 25px;
+    margin-left: 5px;
+    margin-bottom: 4px;
+}

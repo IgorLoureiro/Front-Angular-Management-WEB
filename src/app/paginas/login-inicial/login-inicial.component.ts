@@ -26,6 +26,7 @@ export class LoginInicialComponent {
   Modal: boolean = false;
   Message!: string;
   ModalTitle: string = '';
+  ModalTitleColor: string = 'green';
 
   //Injeção e manuseio de dependencias (Método antigo)
   constructor(
@@ -61,7 +62,7 @@ export class LoginInicialComponent {
   SubmitLogin(){
     console.log(this.LoginForm.value)
     this.LoginService.PostLoginUser(this.LoginForm.value).subscribe({
-      next: (result) => {
+      next: (result: any) => {
         if(this.LoginForm.controls['RememberMe'].value){
           let UserLoged = {
             LoginForm: this.LoginForm.value,
@@ -72,11 +73,13 @@ export class LoginInicialComponent {
         }
         this.Modal = true
         this.ModalTitle = 'Success'
-        this.Message = "Logged Sucessfully"
+        this.ModalTitleColor = 'green'
+        this.Message = result?.message
       }, error: (e) => {
         console.log(e)
         localStorage.removeItem('UserLoged');
-        this.Message = "An error occurred while trying to login";
+        this.Message = e.error.message
+        this.ModalTitleColor = 'red'
         this.ModalTitle = 'Error'
         this.Modal = true;
       }
@@ -91,10 +94,11 @@ export class LoginInicialComponent {
     this.UserIsAlreadyTaken = false;
     this.EmailIsAlreadyRegistered = false;
     this.LoginService.PostRegisterUser(this.SignUpForm.value).subscribe({
-      next: (any) => {
+      next: (result: any) => {
         this.SignUpModal = !this.SignUpModal
-        this.Message = "Account Created Sucessfully";
+        this.Message = result?.message;
         this.ModalTitle = 'Success';
+        this.ModalTitleColor = 'green'
         this.Modal = true;
       }, error: (e) => {
         if(e?.error?.code == 1){
@@ -104,7 +108,8 @@ export class LoginInicialComponent {
         } else{
           this.SignUpModal = !this.SignUpModal
           this.ModalTitle = 'Error'
-          this.Message = "An error occurred while trying to register";
+          this.ModalTitleColor = 'red'
+          this.Message = e.error.message;
           this.Modal = true;
         }
       }

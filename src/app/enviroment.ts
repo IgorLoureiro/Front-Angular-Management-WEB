@@ -1,9 +1,5 @@
-import { config } from 'dotenv';
-
-config();
-
 const local_config: any = {
-    baseUrl: process.env['API_KEY'],
+    baseUrl: "https://localhost:44389/",
     environment: "Local",
 };
 

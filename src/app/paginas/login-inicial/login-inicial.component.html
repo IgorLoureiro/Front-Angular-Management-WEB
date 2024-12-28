@@ -1,6 +1,6 @@
 <div class="Englobational-Login-Div">
     <div class="Beauty-login-div">
-        <img style="width: 70%; user-select: none;" src="/LoginPageArt.png" alt="Imagem de Login">
+        <img style="width: 70%; user-select: none;" src="assets/LoginPageArt.png" alt="Imagem de Login">
     </div>
     <div class="Login-func-div">
       <div class="Separation-Div">
@@ -84,7 +84,10 @@
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title">{{ModalTitle}}</h5>
+          <h5 [style.color]="this.ModalTitleColor" class="modal-title">{{ModalTitle}}
+            <i><img [src]="ModalTitleColor == 'red' ? 'assets/error-svgrepo-com.svg' : 'assets/correct-svgrepo-com.svg'" 
+              class="icon-modal" [alt]="ModalTitleColor == 'red'? 'Icone de Erro' : 'Icone de Correto'"></i>
+          </h5>
           <button (click)="Modal = !Modal" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
