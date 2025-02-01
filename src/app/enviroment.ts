@@ -1,5 +1,5 @@
 const local_config: any = {
-    baseUrl: "https://localhost:44389/",
+    baseUrl: "https://localhost:7241/",
     environment: "Local",
 };
 

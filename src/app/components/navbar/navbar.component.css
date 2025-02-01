@@ -1,0 +1,50 @@
+.user-information-bar{
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    justify-content: space-between;
+    min-width: 10rem;
+    width: auto;
+}
+
+.image-width-bar{
+    width: 2rem;
+    user-select: none;
+    border-radius: 25px;
+    border: 1px solid whitesmoke;
+}
+
+.navbar-modifications{
+    background-color: #50C878 !important;
+}
+
+.username-div{
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+}
+
+.offcanvas-body {
+    background-color: #50C878;
+}
+
+.offcanvas-header {
+    background-color: #50C878;
+}
+
+.arrow-up {
+    position: absolute;
+    top: -10px;
+    left: 88.6%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 10px solid white;
+}
+
+.SearchButtonStyle{
+    background-color: #007BFF;
+    color: #FFFFFF;
+}

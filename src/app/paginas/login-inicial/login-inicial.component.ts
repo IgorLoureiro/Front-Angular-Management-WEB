@@ -70,6 +70,7 @@ export class LoginInicialComponent {
             RememberedDate: new Date()
           }
           localStorage.setItem('UserLoged', JSON.stringify(UserLoged));
+          this.router.navigate(['tela-principal']);
         }
         this.Modal = true
         this.ModalTitle = 'Success'
