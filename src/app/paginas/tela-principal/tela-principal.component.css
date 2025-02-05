@@ -3,3 +3,10 @@
 }
 
 #map { height: 94vh; }
+
+.Centralize-Text-Input {
+    display: flex;
+    font-weight: 400;                        
+    letter-spacing: 0.05em;           
+    color: gray;                      
+}
