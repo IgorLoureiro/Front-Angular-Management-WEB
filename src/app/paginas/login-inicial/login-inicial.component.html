@@ -5,6 +5,12 @@
     <div class="Login-func-div">
       <div class="Separation-Div">
         <form class="Login-Form-Style" [formGroup]="LoginForm">
+          @if(this.signUpMode){
+            <div class="mb-3">
+              <label class="form-label Centralize-Text-Input">Username</label>
+              <input type="email" class="form-control" formControlName="username">
+            </div>
+          }
           <div class="mb-3">
             <label class="form-label Centralize-Text-Input">Email address</label>
             <input type="email" class="form-control" formControlName="email">
@@ -14,23 +20,40 @@
             <label for="exampleInputPassword1" class="form-label Centralize-Text-Input">Password</label>
             <input type="password" class="form-control" formControlName="password">
           </div>
-          <div class="Information-Password-Camp">
-            <div class="mb-3 form-check">
-              <input formControlName="RememberMe" type="checkbox" class="form-check-input">
-              <label (click)="onClickRememberMe()" class="DownTextStyle">Remember me</label>
+          @if(this.signUpMode){
+            <div class="mb-3">
+              <label for="exampleInputPassword1" class="form-label Centralize-Text-Input">Confirm Password</label>
+              <input type="password" class="form-control" formControlName="confirmPassword" (ngModelChange)="DebouncePassword.next('')">
             </div>
-            <div>
-              <label (click)="GoToPasswordRecovery()" class="DownTextStyle">Forgot Password?</label>
+            <div class="passwordReq">
+              <label style="color: black;">A senha deve conter:</label>
+              <label [style.color]="VerificationList[0]? 'green' : 'gray'"> * No minimo 8 caracteres</label>
+              <label [style.color]="VerificationList[1]? 'green' : 'gray'"> * No minimo 1 letra maiúscula</label>
+              <label [style.color]="VerificationList[2]? 'green' : 'gray'"> * No minimo 1 letra minúscula</label>
+              <label [style.color]="VerificationList[3]? 'green' : 'gray'"> * No minimo 1 número</label>
+              <label [style.color]="VerificationList[4]? 'green' : 'gray'"> * No minimo 1 caractere especial</label>
             </div>
-          </div>
-          <button (click)="SubmitLogin()" class="btn btn-primary LoginButton">Login</button>
-          <label style="padding-top: 10px;">Don't Have An Account? <label (click)="openSignUpModal()" style="font-weight: bold; cursor: pointer;">Click Here</label></label>
+          }
+          @if(!signUpMode){
+            <div class="Information-Password-Camp">
+              <div class="mb-3 form-check">
+                <input formControlName="RememberMe" type="checkbox" class="form-check-input">
+                <label (click)="onClickRememberMe()" class="DownTextStyle">Remember me</label>
+              </div>
+              <div>
+                <label (click)="GoToPasswordRecovery()" class="DownTextStyle">Forgot Password?</label>
+              </div>
+            </div>
+          }
+          <button (click)="SubmitLogin()" class="btn btn-primary LoginButton">{{ this.signUpMode? "Subscribe" : "Login" }}</button>
+          <label style="padding-top: 10px;">{{ this.signUpMode? "Already have a account? " : "Don't have an account? " }}<label (click)="changeSignUpMode()" 
+            style="font-weight: bold; cursor: pointer; color: #7b74d3;">Click Here</label></label>
       </form>
       </div>
     </div>
 </div>
 
-@if(SignUpModal){
+<!-- @if(SignUpModal){
   <div class="modal-backdrop"></div>
   <div class="modal show d-block fade" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered">
@@ -76,7 +99,7 @@
       </div>
     </div>
   </div>
-}
+} -->
 
 @if(Modal){
   <div class="modal-backdrop"></div>

@@ -12,17 +12,15 @@ export class NavbarComponent {
 
   UserImage: string = "assets/veterinarian.png";
   Username: string = "UsuarioTeste";
-  @Output() addingPointer = new EventEmitter<boolean>();
-  AddingPointer: boolean = false;
+  @Output() addingPointer = new EventEmitter<string>();
 
   constructor(private el: ElementRef){
 
   }
 
-  AddAPointer(){
+  AddAPointer(localName: string){
     document.body.style.cursor = 'url("https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png") 16 32, auto';
-    this.AddingPointer = true;
-    this.addingPointer.emit(this.AddingPointer);
+    this.addingPointer.emit(localName);
   }
 
 }

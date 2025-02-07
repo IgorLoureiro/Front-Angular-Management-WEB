@@ -26,7 +26,7 @@
             </ul>
           </li>
           <li class="nav-item">
-            <a class="nav-link" (click)="AddAPointer()" type="button" aria-disabled="true">Add a Point</a>
+            <a class="nav-link" type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop" aria-disabled="true">Add a Point</a>
           </li>
         </ul>
         <form class="d-flex" role="search">
@@ -60,5 +60,20 @@
   </div>
   <div class="offcanvas-body">
     <p>No locals where found near you.</p>
+  </div>
+</div>
+
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+        <label style="padding-bottom: 10px;" class="Centralize-Text-Input">Marker Name</label>
+        <input #LocalNameInput autocomplete="new-username" class="form-control">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        <button type="button" (click)="AddAPointer(LocalNameInput.value)" data-bs-dismiss="modal" class="btn btn-primary">Done</button>
+      </div>
+    </div>
   </div>
 </div>

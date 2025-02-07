@@ -2,13 +2,14 @@ import { Component, HostListener, Inject, Input, PLATFORM_ID } from '@angular/co
 import { NavbarComponent } from '../../components/navbar/navbar.component';
 import * as L from 'leaflet';
 import { isPlatformBrowser, CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 declare var bootstrap: any;
 
 @Component({
   selector: 'app-tela-principal',
   standalone: true,
-  imports: [NavbarComponent, CommonModule],
+  imports: [NavbarComponent, CommonModule, FormsModule],
   templateUrl: './tela-principal.component.html',
   styleUrl: './tela-principal.component.css'
 })
@@ -21,6 +22,7 @@ export class TelaPrincipalComponent {
   isAddingPointer: boolean = false;
   isBrowser: boolean;
   showModal: boolean = true;
+  PlaceName: string = "";
 
   constructor(@Inject(PLATFORM_ID) private platformId: Object) {
     this.isBrowser = isPlatformBrowser(this.platformId);
@@ -60,44 +62,29 @@ export class TelaPrincipalComponent {
     }
   }
 
-  onAddingPointer($event: any) {
-    if($event == true){
-      this.map.dragging.disable();
-      this.isAddingPointer = true;
-    } else{
-      this.map.dragging.enable();
-      this.isAddingPointer = false;
-    }
+  onAddingPointer($event: string) {
+    this.PlaceName = $event
+    this.map.dragging.disable();
+    this.isAddingPointer = true;
   }
 
   @HostListener('document:click', ['$event'])
   addPointerInMap(event: MouseEvent){
     this.map.on('click', async (event: any) => {
+      console.log('isAddingPointer', this.isAddingPointer)
       if(this.isAddingPointer){
         const L = await import('leaflet');
         const lat = event.latlng.lat;
         const lng = event.latlng.lng;
 
-        this.openModal()
+        var marker = L.marker([lat, lng]).addTo(this.map);
+        marker.bindPopup(`<b>${this.PlaceName}</b>`).openPopup();
 
-        // var marker = L.marker([lat, lng]).addTo(this.map);
-        // marker.bindPopup("<b>Você clicou aqui</b>").openPopup();
-
-        // document.body.style.cursor = 'default';
-        // this.map.dragging.enable();
-        // this.isAddingPointer = false;
+        document.body.style.cursor = 'default';
+        this.map.dragging.enable();
+        this.isAddingPointer = false;
       }
     });
-  }
-
-  openModal(){
-    if (this.isBrowser) {
-      const modalElement = document.getElementById('staticBackdrop');
-      if (modalElement) {
-        const modal = new bootstrap.Modal(modalElement!);
-        modal.show();
-      }
-    }
   }
 
 }

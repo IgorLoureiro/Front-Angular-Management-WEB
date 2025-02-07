@@ -137,7 +137,7 @@
 .passwordReq{
     display: flex;
     flex-direction: column;
-    padding-top: 15px;
+    padding-bottom: 15px;
     color: gray;
 }
 

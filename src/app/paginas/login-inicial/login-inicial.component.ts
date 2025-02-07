@@ -27,6 +27,7 @@ export class LoginInicialComponent {
   Message!: string;
   ModalTitle: string = '';
   ModalTitleColor: string = 'green';
+  signUpMode: boolean = false;
 
   //Injeção e manuseio de dependencias (Método antigo)
   constructor(
@@ -40,14 +41,11 @@ export class LoginInicialComponent {
 
   ngOnInit(){
     this.LoginForm = this.FormBuilder.group({
-      email: ['', Validators.required],
-      password: ['', Validators.required],
-      RememberMe: [true]      
-    })
-    this.SignUpForm = this.FormBuilder.group({
       username: ['', [Validators.required, Validators.minLength(4)]],
       email: ['', [Validators.required, Validators.email]],
-      password: ['', Validators.required,]
+      password: ['', Validators.required],
+      confirmPassword: ['', Validators.required],
+      RememberMe: [true]      
     })
     this.DebouncePassword.pipe(debounceTime(300)).subscribe(() => {
       this.verifyRequisitesPassword();
@@ -118,7 +116,7 @@ export class LoginInicialComponent {
   }
 
   verifyRequisitesPassword(){
-    const password = this.SignUpForm?.get('password')?.value
+    const password = this.LoginForm?.get('password')?.value
     this.VerificationList[0] = password.length >= 8;
     this.VerificationList[1] = /[A-Z]/.test(password)
     this.VerificationList[2] = /[a-z]/.test(password)
@@ -126,11 +124,12 @@ export class LoginInicialComponent {
     this.VerificationList[4] = /[!@#$%^&*(),.?":{}|<>]/.test(password);
   }
 
-  openSignUpModal(){
-    this.SignUpForm.reset()
+  changeSignUpMode(){
+    // this.SignUpForm.reset()
     this.UserIsAlreadyTaken = false;
     this.EmailIsAlreadyRegistered = false;
-    this.SignUpModal = true;
+    this.signUpMode = !this.signUpMode;
+    // this.SignUpModal = true;
     this.VerificationList = [false, false, false, false, false];
   }
 
